@@ -7,17 +7,18 @@ namespace Store.Web.Controllers;
 
 public class HomeController : ControllerBase
 {
-    private readonly IBookRepository bookRepository;
+    private readonly BookService bookService;
 
-    public HomeController(IBookRepository bookRepository)
+
+    public HomeController(BookService bookService)
     {
-        this.bookRepository = bookRepository;
+        this.bookService = bookService;
     }
 
     [HttpGet]
     public IEnumerable<Book> Get(string query)
     {
-        var books = bookRepository.GetAllByTitle(query);
+        var books = bookService.GetAllByQuery(query);
         return books;
     }
 }
