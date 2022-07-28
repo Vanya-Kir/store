@@ -4,23 +4,21 @@ public class BookRepository : IBookRepository
 {
     private readonly Book[] books = new[]
     {
-        new Book(1, "Art of programming", "ISBN 123", "D. Knuth"),
-        new Book(2, "Refactoring", "ISBN 2345", "M. Fowler"),
-        new Book(3, "Clean Code", "ISBN 9870", "M. Fowler"),
+        new Book(1, "Art of programming", "ISBN 123 456 798-0", "D. Knuth"),
+        new Book(2, "Refactoring", "ISBN 98-76 543 210", "M. Fowler"),
+        new Book(3, "Clean Code", "ISBN 123-456-7890-123", "M. Fowler"),
     };
 
     public Book[] GetAllByAuthorOrTitle(string authorOrTitle)
     {
-        throw new NotImplementedException();
+        return books.Where(book => book.Author.Contains(authorOrTitle)
+                                || book.Title.Contains(authorOrTitle))
+                    .ToArray();
     }
 
-    public Book[] GetAllByIsbn(string isbn)
+    public Book[] GetByIsbn(string isbn)
     {
-        throw new NotImplementedException();
+        return books.Where(book => book.Isbn == isbn).ToArray();
     }
 
-    public Book[] GetAllByTitle(string titlePart)
-    {
-        return books.Where(book => book.Title.Contains(titlePart)).ToArray();
-    }
 }

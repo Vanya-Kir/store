@@ -5,12 +5,12 @@ namespace Store.Web.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 
-public class HomeController : ControllerBase
+public class SearchController : ControllerBase
 {
     private readonly BookService bookService;
 
 
-    public HomeController(BookService bookService)
+    public SearchController(BookService bookService)
     {
         this.bookService = bookService;
     }
