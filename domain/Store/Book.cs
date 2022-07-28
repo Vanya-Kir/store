@@ -1,12 +1,31 @@
-﻿namespace Store;
+﻿using System.Text.RegularExpressions;
+
+namespace Store;
 public class Book
 {
-    public Book(int id, string title)
+    public int Id { get; }
+    public string Title { get; }
+    public string Isbn { get; }
+    public string Author { get; }
+    public Book(int id, string title, string isbn, string author)
     {
         Id = id;
         Title = title;
+        Isbn = isbn;
+        Author = author;
     }
 
-    public int Id { get; }
-    public string Title { get; }
+    internal static bool IsIsbn(string isbn)
+    {
+        if (isbn == null)
+            return false;
+
+        isbn = isbn.Trim()
+                .Replace(" ", "")
+                .Replace("-", "")
+                .ToUpper();
+
+        return Regex.IsMatch(isbn, @"^ISBN\d{10}(\d{3})?$");
+    }
+
 }
