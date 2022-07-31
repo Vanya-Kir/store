@@ -6,4 +6,5 @@ public interface IBookRepository
     Book[] GetAllByAuthorOrTitle(string authorOrTitle);
     
     Book GetById(int id);
+    Book[] GetAllByIds(IEnumerable<int> bookIds);
 }
